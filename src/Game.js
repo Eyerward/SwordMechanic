@@ -29,6 +29,7 @@ const game = new Phaser.Game(gameConfig);
         this.body=this.add.image(250,250,'body').setOrigin(0,0);
         this.body.setDisplaySize(100,250);
 
+        this.sword=this.add.image(250,250,'sword').setOrigin(0,0);
 
     }
     function update()
