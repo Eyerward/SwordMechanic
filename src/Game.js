@@ -23,7 +23,7 @@ class Tableau extends Phaser.scene{
     }
     create()
     {
-
+        this.body=this.add.image(250,250,'body').setOrigin(0,0);
     }
     update()
     {}
