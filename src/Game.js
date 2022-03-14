@@ -10,7 +10,11 @@ let gameConfig = {
             gravity: { y: 200 }
         }
     },
-    scene: new Tableau()
+    scene: {
+        preload,
+        create,
+        update,
+    },
 };
 let game = new Phaser.Game(gameConfig);
 
