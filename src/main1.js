@@ -1,4 +1,3 @@
-
 let gameConfig = {
     type: Phaser.AUTO,
     width: 1280,
@@ -12,7 +11,6 @@ let gameConfig = {
             debug: true,
         },
     },
-    scene: new Tab()
+    scene: new Tableau1()
 };
-
 let game = new Phaser.Game(gameConfig);
