@@ -1,8 +1,14 @@
 body{
     font-family: Arial, sans-serif;
     font-size: 12px;
-    background-color: #ffffff;
+    background-color: #000000;
     text-align: center;
+}
+a {
+    color: #ffffff;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 1s;
 }
 #game{
     margin-bottom: 10px;
@@ -15,3 +21,4 @@ body{
 canvas{
     outline: 1px solid #333;
 }
+
