@@ -1,70 +1,82 @@
-let gameConfig = {
-    type: Phaser.AUTO,
-    width: 1280,
-    height: 720,
-    backgroundColor: '#000000',
-    parent: 'game',
-    physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: {y: 200},
-            debug: true,
-        },
-    },
-    scene: {
-        preload,
-        create,
-        update,
-    },
-};
-const game = new Phaser.Game(gameConfig);
 
-    function preload()
-    {
-        this.load.image('body','asset/square.png');
-        this.load.image('sword','asset/sword.png');
+
+
+class Tab extends Phaser.scene {
+
+    preload() {
+        this.load.image('body', 'asset/square.png');
+        this.load.image('sword', 'asset/sword.png');
     }
-    function create()
-    {
+
+    create() {
         this.hauteur = 720;
         this.largeur = 1280;
 
-        this.warrior = this.add.container(0,0);
+        this.warrior = this.add.container(0, 0);
 
-        this.knight = this.physics.add.image(0,300,'body').setOrigin(0,0);
-        this.knight.setDisplaySize(150,400);
-        this.knight.setTintFill(0x0f00ff);
-        this.knight.body.setAllowGravity(false);
-        this.knight.setImmovable(true);
-        this.warrior.add(this.knight);
+        let knight = this.physics.add.sprite(0, 300, 'body', 1).setOrigin(0, 0);
+        knight.setDisplaySize(150, 400);
+        knight.setTintFill(0x0f00ff);
+        knight.body.setAllowGravity(false);
+        knight.setImmovable(true);
+        this.warrior.add(knight);
 
-        this.sword = this.physics.add.image(100,100,'sword').setOrigin(0,0);
-        this.sword.setScale(0.5);
-        this.sword.body.setAllowGravity(false);
-        this.sword.setImmovable(true);
-        this.warrior.add(this.sword);
+        let sword = this.physics.add.sprite(100, 100, 'sword', 1).setOrigin(0, 0);
+        sword.setScale(0.5);
+        sword.body.setAllowGravity(false);
+        sword.setImmovable(true);
+        this.warrior.add(sword);
 
-        this.target = this.physics.add.image(1000, 300, 'body').setOrigin(0,0);
+        this.target = this.physics.add.image(1000, 300, 'body').setOrigin(0, 0);
         this.target.body.setAllowGravity(false);
         this.target.setImmovable(true);
 
-        let me = this;
 
-        this.input.keyboard.on('keydown-D', function (event)
-        {
-            me.warrior.body.setVelocityX(100);
-        });
+        this.intitKeyboard();
 
 
     }
 
-    function disparait(obstacle){
+    intitKeyboard() {
+        let me = this;
+
+        this.input.keyboard.on('keydown', function (kevent) {
+            switch (kevent.keyCode) {
+                case Phaser.Input.Keyboard.KeyCodes.D:
+                    me.warrior.body.setVelocityY(100);
+                    break;
+                case Phaser.Input.Keyboard.KeyCodes.Q:
+                    me.warrior.body.setVelocityY(-100);
+                    break;
+            }
+        });
+        this.input.keyboard.on('keyup', function (kevent) {
+            switch (kevent.keyCode) {
+                case Phaser.Input.Keyboard.KeyCodes.A:
+                case Phaser.Input.Keyboard.KeyCodes.Q:
+                    me.gauche.body.setVelocityY(0);
+                    break;
+                case Phaser.Input.Keyboard.KeyCodes.P:
+                case Phaser.Input.Keyboard.KeyCodes.M:
+                    me.droite.body.setVelocityY(0);
+                    break;
+            }
+        });
+    }
+
+    disparait(obstacle) {
 
         obstacle.body.setEnable(false);
         obstacle.setVisible(false);
         obstacle.ombre.setVisible(false);
     }
 
-    function update()
-    {}
+    update()
+    {
+
+
+    }
+
+
+}
 
