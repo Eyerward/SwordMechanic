@@ -1,9 +1,11 @@
 
+
 class Tableau1 extends Phaser.Scene {
 
     preload() {
         this.load.image('body', 'asset/square.png');
         this.load.image('sword', 'asset/sword.png');
+        this.load.audio('song_sword','assets/song_sword.mp3');
     }
 
 
@@ -13,6 +15,8 @@ class Tableau1 extends Phaser.Scene {
 
 
         this.warrior = this.add.container(0, 0);
+
+        this.choung = this.sound.add('song_sword');
 
         this.knight = this.physics.add.image(0, 300, 'body').setOrigin(0, 0);
         this.knight.setDisplaySize(150, 400);
@@ -65,6 +69,7 @@ class Tableau1 extends Phaser.Scene {
                 case Phaser.Input.Keyboard.KeyCodes.SPACE:
                     me.sword.body.setEnable(true);
                     me.sword.setVisible(true);
+                    me.choung.play();
             }
         });
         this.input.keyboard.on('keyup', function(kevent)
